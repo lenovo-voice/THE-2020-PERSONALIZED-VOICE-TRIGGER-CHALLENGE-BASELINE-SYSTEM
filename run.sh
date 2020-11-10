@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-stage=2
+stage=1
 
 
 if [ $stage -le 1 ];then

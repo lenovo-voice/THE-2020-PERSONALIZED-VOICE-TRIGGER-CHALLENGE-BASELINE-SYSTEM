@@ -1,6 +1,6 @@
 #!/bin/bash
 
-stage=4
+stage=1
 
 if [ $stage -le 1 ];then
 	python src/prepare_index.py --pos_feat_dir data/train_feat/positive --neg_feat_dir data/train_feat/negative --dest_dir index_words || exit 1
