@@ -4,3 +4,6 @@ Our baseline system consists of a wake-up system and a speaker verification syst
 
 ![image](https://github.com/jiay7/THE-2020-PERSONALIZED-VOICE-TRIGGER-CHALLENGE-BASELINE-SYSTEM/blob/master/wake_sv.png)
 
+See KWS_README.md and SV_README.md for more details.
+
+
