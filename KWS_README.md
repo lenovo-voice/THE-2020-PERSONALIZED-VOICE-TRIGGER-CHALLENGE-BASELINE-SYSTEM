@@ -94,10 +94,6 @@ A major drawback of mel filter bank feature is that it will toally mess up when 
 </center>
 
 
-
-![task1_result](https://github.com/jiay7/THE-2020-PERSONALIZED-VOICE-TRIGGER-CHALLENGE-BASELINE-SYSTEM/blob/master/wake_task1.jpg "Task1_result")
-![task2_result](https://github.com/jiay7/THE-2020-PERSONALIZED-VOICE-TRIGGER-CHALLENGE-BASELINE-SYSTEM/blob/master/wake_task2.jpg "Task2_result")
-
 Results are shown in wake_task1.jpg and wake_task2.jpg. We choose the false rejection rate under one false alarm per hour as model's performance criterion. Table presents the KWS performance of the model regarding false rejection rate when the false alarm rate per hour is 1.
 
 | Model | Task1 | Task2 |
