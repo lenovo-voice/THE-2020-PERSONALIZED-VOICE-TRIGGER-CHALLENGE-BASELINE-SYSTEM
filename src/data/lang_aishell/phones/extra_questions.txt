@@ -1,0 +1,7 @@
+sil
+$0 b c ch d f g h j k l m n p q r s sh spn t w x y z zh
+a_0 ai_0 an_0 ang_0 ao_0 e_0 ei_0 en_0 eng_0 er_0 i_0 ia_0 ian_0 iang_0 iao_0 ie_0 in_0 ing_0 iong_0 iu_0 o_0 ong_0 ou_0 u_0 ua_0 uai_0 uan_0 uang_0 ui_0 un_0 uo_0 v_0 van_0 ve_0 vn_0
+a_2 ai_2 an_2 ang_2 ao_2 e_2 ei_2 en_2 eng_2 er_2 i_2 ia_2 ian_2 iang_2 iao_2 ie_2 in_2 ing_2 iong_2 iu_2 o_2 ong_2 ou_2 u_2 ua_2 uai_2 uan_2 uang_2 ui_2 un_2 uo_2 v_2 van_2 ve_2 vn_2
+a_4 ai_4 an_4 ang_4 ao_4 e_4 ei_4 en_4 eng_4 er_4 i_4 ia_4 ian_4 iang_4 iao_4 ie_4 in_4 ing_4 iong_4 iu_4 o_4 ong_4 ou_4 u_4 ua_4 uai_4 uan_4 uang_4 ui_4 un_4 uo_4 v_4 van_4 ve_4 vn_4
+a_1 ai_1 an_1 ang_1 ao_1 e_1 ei_1 en_1 eng_1 er_1 i_1 ia_1 ian_1 iang_1 iao_1 ie_1 in_1 ing_1 iong_1 iu_1 o_1 ong_1 ou_1 u_1 ua_1 uai_1 uan_1 uang_1 ui_1 un_1 uo_1 v_1 van_1 ve_1 vn_1
+a_3 ai_3 an_3 ang_3 ao_3 e_3 ei_3 en_3 eng_3 er_3 i_3 ia_3 ian_3 iang_3 iao_3 ie_3 in_3 ing_3 iong_3 iu_3 o_3 ong_3 ou_3 u_3 ua_3 uai_3 uan_3 uang_3 ui_3 un_3 uo_3 v_3 van_3 ve_3 vn_3

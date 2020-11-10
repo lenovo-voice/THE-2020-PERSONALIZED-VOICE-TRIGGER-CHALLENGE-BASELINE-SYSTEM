@@ -1,0 +1,61 @@
+shared split sil
+shared split $0
+shared split a_0 a_1 a_2 a_3 a_4
+shared split ai_0 ai_1 ai_2 ai_3 ai_4
+shared split an_0 an_1 an_2 an_3 an_4
+shared split ang_0 ang_1 ang_2 ang_3 ang_4
+shared split ao_0 ao_1 ao_2 ao_3 ao_4
+shared split b
+shared split c
+shared split ch
+shared split d
+shared split e_0 e_1 e_2 e_3 e_4
+shared split ei_0 ei_1 ei_2 ei_3 ei_4
+shared split en_0 en_1 en_2 en_3 en_4
+shared split eng_0 eng_1 eng_2 eng_3 eng_4
+shared split er_0 er_1 er_2 er_3 er_4
+shared split f
+shared split g
+shared split h
+shared split i_0 i_1 i_2 i_3 i_4
+shared split ia_0 ia_1 ia_2 ia_3 ia_4
+shared split ian_0 ian_1 ian_2 ian_3 ian_4
+shared split iang_0 iang_1 iang_2 iang_3 iang_4
+shared split iao_0 iao_1 iao_2 iao_3 iao_4
+shared split ie_0 ie_1 ie_2 ie_3 ie_4
+shared split in_0 in_1 in_2 in_3 in_4
+shared split ing_0 ing_1 ing_2 ing_3 ing_4
+shared split iong_0 iong_1 iong_2 iong_3 iong_4
+shared split iu_0 iu_1 iu_2 iu_3 iu_4
+shared split j
+shared split k
+shared split l
+shared split m
+shared split n
+shared split o_4 o_0 o_1 o_2 o_3
+shared split ong_0 ong_1 ong_2 ong_3 ong_4
+shared split ou_0 ou_1 ou_2 ou_3 ou_4
+shared split p
+shared split q
+shared split r
+shared split s
+shared split sh
+shared split spn
+shared split t
+shared split u_0 u_1 u_2 u_3 u_4
+shared split ua_0 ua_1 ua_2 ua_3 ua_4
+shared split uai_0 uai_1 uai_2 uai_3 uai_4
+shared split uan_0 uan_1 uan_2 uan_3 uan_4
+shared split uang_0 uang_1 uang_2 uang_3 uang_4
+shared split ui_0 ui_1 ui_2 ui_3 ui_4
+shared split un_0 un_1 un_2 un_3 un_4
+shared split uo_0 uo_1 uo_2 uo_3 uo_4
+shared split v_0 v_1 v_2 v_3 v_4
+shared split van_0 van_1 van_2 van_3 van_4
+shared split ve_0 ve_1 ve_2 ve_3 ve_4
+shared split vn_0 vn_1 vn_2 vn_3 vn_4
+shared split w
+shared split x
+shared split y
+shared split z
+shared split zh
