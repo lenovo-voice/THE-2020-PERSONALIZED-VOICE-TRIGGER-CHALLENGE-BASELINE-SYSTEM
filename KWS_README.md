@@ -55,13 +55,13 @@ The model is constructed with a two-layer stacked LSTM structure with **hidden_s
 
 The baseline system is trained with cross-entropy loss. Stochastic gradient descent with Nesterov momentum is selected as the optimizer. The learning rate is first initialized as 0.01 and decreases by a factor of 0.1 when the training loss plateau. We train the model for 100 epochs with a batch size of 128 and employ early stopping when the training loss is not decreasing. 
 
-In the evaluation period, we use a sliding window of 100 frames to compute the confidence score[https://arxiv.org/abs/2005.03633]().
+In the evaluation period, we use a sliding window of 100 frames to compute the confidence score.
 
 
 ***Deployment Model***
 
 
-After the training process, the sequence of acoustic features is projected to a posterior probabilities sequence of keywords by the model. In the module of confidence computation, we adopt the method proposed in [1] to make the decisions. In this approach, we define a sliding window with the length of 150 frames which is used to compute scores. We smooth the output probabilities at a length of 50 frames by taking average. The system triggers whenever the confidence score exceed the pre-defined threshold.
+After the training process, the sequence of acoustic features is projected to a posterior probabilities sequence of keywords by the model. In the module of confidence computation, we adopt the method proposed in [https://arxiv.org/abs/2005.03633]() to make the decisions. In this approach, we define a sliding window with the length of 150 frames which is used to compute scores. We smooth the output probabilities at a length of 50 frames by taking average. The system triggers whenever the confidence score exceed the pre-defined threshold.
 
 We add a simple VAD to detect voice activity.
 
