@@ -40,8 +40,11 @@ For example,
 And therefore we have a output space of 4.
 
 Feature **xiaole_xiaole_PVTC0001-xiaole-1-0010.wav.npy** will be labeled as **xiaole**
+
 Feature **lexiao#_xiaole_PVTC0001-xiaole-1-0142.wav.npy** will be labeled as **lexiao#**
+
 Feature **xiao#le#_xiaole_PVTC0001-xiaole-1-0210.wav.npy** will be labeled as **xiao#le#**
+
 Feature **other_PVTC0121-xiaole-6-0443.wav.npy** will be labeled as **filler**
 
 ## model
