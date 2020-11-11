@@ -77,6 +77,6 @@ Results are shown in wake_task1.jpg and wake_task2.jpg. We choose the false reje
 
 | Model | Task1 | Task2 |
 | :----:| :----: | :----: |
-| KWS baseline | 2.00 | 5.09 |
+| KWS baseline | 2.00% | 5.09% |
 
 
