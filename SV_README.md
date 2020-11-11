@@ -1,4 +1,4 @@
-# Seaper verification part  
+# Speaker verification part  
 ## Introduction
 The speaker verification part of this repository is based on [voxceleb_trainer](https://github.com/clovaai/voxceleb_trainer)
 
