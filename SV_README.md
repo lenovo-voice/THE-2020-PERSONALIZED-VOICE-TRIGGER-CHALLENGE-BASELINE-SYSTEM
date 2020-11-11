@@ -76,14 +76,14 @@ The access code is `ayez`
 1. Once the speaker verfication system is obtained, the threshold of the system is determined based on the given task.
 ```
 $ cd ./sv_part
-$ CUDA_VISIBLE_DEVICES=<gpu> python ./inference.py --inference  --model ResNetSE34v2 --log_input True --encoder_type ASP --trainfunc amsoftmax --save_path <path_task> --nClasses 300 --augment True --n_mels 80 --lr_decay 0.2 --lr 0.01  --initial_model <finetuned_model> --scale 32 --margin 0.2  --optimizer sgd --trials_list <pvtc_trial> --utt2wav <wav.scp> --utt2label <utt2label_template>  --save_dic True
+$ CUDA_VISIBLE_DEVICES=<gpu> python ./inference.py --inference  --model ResNetSE34v2 --log_input True --encoder_type ASP --trainfunc amsoftmax --save_path <path_task> --nClasses 300 --augment True --n_mels 80 --lr_decay 0.2 --lr 0.01  --initial_model <finetuned_model> --scale 32 --margin 0.2  --optimizer sgd --trials_list <pvtc_trial> --uttpath <path of dev utt> --utt2label <utt2label_template>  --save_dic True
 $ cd ../
 ```
-By running the above code, the threthold of the system and the speaker embedding of the enrollment data in the trial file will be calculated and saved under <path_task>. Note that <path_task> is the path for saving threshold (not the model).
+By running the above code, the threthold of the system and the speaker embedding of the enrollment data in the trial file will be calculated and saved under <path_task>. Note that <path_task> is the path for saving threshold (not the model).We suggest set the `uttpath` parameter as `PVTC/official_data/dev/taskX/wav_data/`, which is the raw audio in tasks.
 
 
 
-**note**: in order to calculate the threshold of the speaker system, we assume the wake-up system is perfect enough. So we use the standard utt2label file which is absolutely right in this step, it can be found in `PVTC/official_data/dev/task1/trials_for_wake`. It contains the uttrance index and its groundtruth, as follows:
+**note**: in order to calculate the threshold of the speaker system, we assume the wake-up system is perfect enough. So we use the standard utt2label file which is absolutely right in this step, it can be found in `PVTC/official_data/dev/task1/trials_for_wake`. It contains the uttrance index and its ground truth, as follows:
 ```
 PVTC_task1_0004.wav positive
 PVTC_task1_0008.wav positive
