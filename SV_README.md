@@ -80,7 +80,7 @@ $ cd ../
 ```
 By running the above code, the threthold of the system and the speaker embedding of the enrollment data in the trial file will be calculated and saved under <path_task>. Note that <path_task> is the path for saving threshold (not the model).
 
-The `utt2label` file is the classification result of the wake-up system, it should contain the uttrance index and its classification result, one line per utterance, as follows:
+The `utt2label` file is the classification result of the wake-up system, it should contain the utterance index and its classification result, one line per utterance, as follows:
 ```
 PVTC_task1_20031.wav non-trigger
 PVTC_task1_19779.wav non-trigger
