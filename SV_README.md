@@ -78,7 +78,7 @@ $ cd ./sv_part
 $ CUDA_VISIBLE_DEVICES=<gpu> python ./inference.py --inference  --model ResNetSE34v2 --log_input True --encoder_type ASP --trainfunc amsoftmax --save_path <path_task> --nClasses 300 --augment True --n_mels 80 --lr_decay 0.2 --lr 0.01  --initial_model <finetuned_model> --scale 32 --margin 0.2  --optimizer sgd --trials_list <pvtc_trial> --utt2wav <wav.scp> --utt2label <utt2label_template>  --save_dic True
 $ cd ../
 ```
-By running the above code, the threthold of the system and the speaker embedding of the enrollment data in the trial file will be calculated and saved under <path_task>. Note that <path_task> is the path for saving threthold (not the model).
+By running the above code, the threthold of the system and the speaker embedding of the enrollment data in the trial file will be calculated and saved under <path_task>. Note that <path_task> is the path for saving threshold (not the model).
 
 The `utt2label` file is the classification result of the wake-up system, it should contain the uttrance index and its classification result, one line per utterance, as follows:
 ```
@@ -89,7 +89,7 @@ PVTC_task1_2348.wav trigger
 PVTC_task1_3055.wav trigger
 PVTC_task1_1630.wav trigger 
 ```
-The classification result of the uttrance should be 'trigger' or 'non-trigger'.
+The classification result of the utterance should be 'trigger' or 'non-trigger'.
 
 **note**: in order to calculate the threshold of the speaker system, we assume the wake-up system is perfect enough. So we use the standard utt2label file which is absolutely right in this step, it can be found in `PVTC/official_data/dev/task1/trials_for_wake`.
 
