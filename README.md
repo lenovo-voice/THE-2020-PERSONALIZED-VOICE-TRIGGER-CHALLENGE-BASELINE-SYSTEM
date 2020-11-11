@@ -6,4 +6,5 @@ Our baseline system consists of a wake-up system and a speaker verification syst
 
 See KWS_README.md and SV_README.md for more details.
 
+The run.sh is the current recommended recipe.
 
