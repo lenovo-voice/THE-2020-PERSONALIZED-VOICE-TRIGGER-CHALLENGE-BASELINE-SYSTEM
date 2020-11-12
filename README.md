@@ -6,9 +6,9 @@ Our baseline system consists of a wake-up system and a speaker verification syst
 
 See KWS_README.md and SV_README.md for more details.
 
-In this challenge, we provide a leaderboard, ranked by the metric $score_{wave\_up}$. As for the $score_{wave\_up}$ metric, the lower the better. The $score_{wave\_up}$ is provided as our challenge metric and it is calculated from the miss rate and the false alarm (FA) rate in the following form:
+In this challenge, we provide a leaderboard, ranked by the metric ![1](http://latex.codecogs.com/svg.latex?score_{wave\_up}). As for the ![2](http://latex.codecogs.com/svg.latex?score_{wave\_up}) metric, the lower the better. The ![3](http://latex.codecogs.com/svg.latex?score_{wave\_up}) is provided as our challenge metric and it is calculated from the miss rate and the false alarm (FA) rate in the following form:
 
-$$score_{wave\_up} = Miss + alpha * FA$$
+![4](http://latex.codecogs.com/svg.latex?score_{wave\_up} = Miss + alpha * FA)
 
 Results are shown in S_kws_task1.jpg and S_kws_task2.jpg.  We choose the final score under alpha is twenty as model's performance criterion.
 
