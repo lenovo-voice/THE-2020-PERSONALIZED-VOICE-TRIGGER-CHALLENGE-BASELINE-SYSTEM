@@ -134,7 +134,7 @@ def compute_final_score(labels, scores, alpha):
     for i,score in enumerate(scores):
         if (score=='negative' )&( labels[i]=='positive'):
             miss = miss+1
-        elif (score =='positive') & (labels[i]=='negetive'):
+        elif (score =='positive') & (labels[i]=='negative'):
             fa = fa+1
     miss_rate = miss / count_pos
     far = fa / count_neg
@@ -221,10 +221,10 @@ if args.inference == True:
     plt.plot(args.alpha, scores,label='S_kws')
     plt.legend()  
     plt.xlabel('Alpha') 
-    plt.ylabel("Final score") 
-    plt.show()
-    plt.savefig('../S_kws.jpg')
-    with open('../S_kws.txt','w') as f:
+    plt.ylabel("Final score")
+    taskid = args.trials_list.split('/')[-2] 
+    plt.savefig(f'../S_kws_{taskid}.jpg')
+    with open(f'../S_kws_{taskid}.txt','w') as f:
         for i,s in enumerate(scores):
             f.write('Alpha:%.2f S_kws:%.5f \n'%(args.alpha[i],s))
     quit()
