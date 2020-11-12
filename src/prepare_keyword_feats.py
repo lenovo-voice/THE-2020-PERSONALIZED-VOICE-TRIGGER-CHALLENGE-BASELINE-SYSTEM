@@ -48,7 +48,7 @@ def read_signal(utt_id):
 def save_feat(feat, word, utt_id):
     word_save_dir = save_dir + '/' + word + '_'
     np.save(word_save_dir + utt_id, feat)
-
+    check = np.load(word_save_dir + utt_id)
 def sig_index_to_feat_index(sig_beg):
     fea_beg = max(0, math.floor(((sig_beg - 0.015) / 0.01) + 1))
     return fea_beg
@@ -84,8 +84,11 @@ def cut_word_and_save(items):
     feats = feats[fea_mid - win - 1 : fea_mid + win]
     feats = feats[0:40]
     feats = feats.T
-    save_feat(feats, word, utt_id)
-    
+    try:
+        save_feat(feats, word, utt_id)
+    except:
+        print(utt_id)
+        return 1
     return 1
 
 def get_words_list(ctm_file):

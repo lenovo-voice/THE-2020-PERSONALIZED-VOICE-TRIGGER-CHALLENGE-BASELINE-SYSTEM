@@ -35,6 +35,7 @@ def extract_and_save(items):
         featCal = logFbankCal(sample_rate = 16000,n_fft = 512,win_length=int(16000*0.025),hop_length=int(16000*0.01),n_mels=80)
         feats = featCal(torch.from_numpy(wav).float())
         np.save(output_dir + "/" + wav_id + ".npy", feats)
+	check = np.load(output_dir + "/" + wav_id + ".npy")
     except:
         print(wav_id)
         return 2
