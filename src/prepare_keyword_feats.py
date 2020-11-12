@@ -48,7 +48,7 @@ def read_signal(utt_id):
 def save_feat(feat, word, utt_id):
     word_save_dir = save_dir + '/' + word + '_'
     np.save(word_save_dir + utt_id, feat)
-    check = np.load(word_save_dir + utt_id)
+
 def sig_index_to_feat_index(sig_beg):
     fea_beg = max(0, math.floor(((sig_beg - 0.015) / 0.01) + 1))
     return fea_beg
