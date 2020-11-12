@@ -1,6 +1,5 @@
 tqdm
 numpy
-multiprocessing
 soundfile
 librosa
 python_speech_features
