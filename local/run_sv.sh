@@ -57,7 +57,7 @@ if [ $stage -le 4 ];then
     cd ../
     cd ./sv_part
     python ./inference.py --inference  --model ResNetSE34v2 --log_input True --encoder_type ASP --trainfunc amsoftmax --save_path 'exps/PVTCfinetune_res34se_asp_sgd_pure_v2/result/task2/' --nClasses 300 \
-        --augment True --n_mels 80 --lr_decay 0.2  --lr 0.01  --initial_model 'exps/PVTCfinetune_res34se_asp_sgd_pure_v2/model/model000000010.model'\
+        --augment True --n_mels 80 --lr_decay 0.2  --lr 0.01  --initial_model 'exps/PVTCfinetune_res34se_asp_sgd_pure_v2/model/model000000020.model'\
         --scale 32 --margin 0.2  --optimizer sgd \
         --trials_list $path_pvtc_dev'/task2/trials' --uttpath $path_pvtc_dev'/task2/wav_data/' --utt2label $path_pvtc_dev'/task2/trials_for_wake'  --save_dic True  || exit 1
     cd ../
