@@ -21,7 +21,7 @@ fi
 if [ $stage -le 2 ];then
 	cd ./src
 	echo $PWD
-	./align_nnet3_word.sh
+	./align_nnet3_word.sh || exit 1
 	cd ../
 fi
 
@@ -30,7 +30,7 @@ if [ $stage -le 3 ];then
 	mkdir -p data
 	cd ./src
 	echo $PWD
-	python prepare_keyword_feats.py --ctm_file exp/nnet3_PVTC/ctm --wavfile_path data/PVTC_nopitch/wav.scp --save_dir ../data/train_feat/positive
+	python prepare_keyword_feats.py --ctm_file exp/nnet3_PVTC/ctm --wavfile_path data/PVTC_nopitch/wav.scp --save_dir ../data/train_feat/positive || exit 1
 	cd ../
 fi
 

@@ -27,8 +27,7 @@ def extract_and_save(items):
     wav_path = items[1]
 
     if path.exists(output_dir + "/" + wav_id + ".npy"): return 1
-    #try:
-    if True:
+    try:
         wav, sr = sf.read(wav_path)
         #wav, _ = librosa.load(wav_path, 16000)
         if len(wav.shape) > 1:
@@ -36,8 +35,7 @@ def extract_and_save(items):
         featCal = logFbankCal(sample_rate = 16000,n_fft = 512,win_length=int(16000*0.025),hop_length=int(16000*0.01),n_mels=80)
         feats = featCal(torch.from_numpy(wav).float())
         np.save(output_dir + "/" + wav_id + ".npy", feats)
-    else:
-    #except:
+    except:
         print(wav_id)
         return 2
  
