@@ -78,7 +78,7 @@ def get_words_list(ctm_file):
     for line in open(ctm_file):
         item = line.split()
 	utt = '-'.join(item[0].split("/")[1:]).replace(".wav","")
-        word_segments.append([utt,item[1],float(item[2]),float(item[3])])
+	word_segments.append([utt,item[1],float(item[2]),float(item[3])])
     return word_segments
 
 def extract_words(ctm_file):
