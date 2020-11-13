@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-stage=1
+stage=2
 
 
 if [ $stage -le 1 ];then
@@ -9,7 +9,8 @@ if [ $stage -le 1 ];then
 fi
 
 if [ $stage -le 2 ];then
-	local/run_kws.sh || exit 1
+	#If the first parameter is set as false, we will provide the trained model for testing.
+	local/run_kws.sh false || exit 1
 fi
 
 

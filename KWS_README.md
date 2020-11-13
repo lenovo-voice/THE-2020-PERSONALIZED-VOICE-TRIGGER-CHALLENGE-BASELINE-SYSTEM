@@ -16,7 +16,8 @@ basic structure: preprocessing -> LSTM -> decode
 pip install -r ./src/requirements.txt
 ```
 
-Replace KALDI_ROOT in ./src/path.sh with your Kaldi path.
+Replace KALDI_ROOT in ./src/path.sh with your Kaldi path. Download and compile Kaldi[https://github.com/kaldi-asr/kaldi]()
+
 
 ## preprocessing
 

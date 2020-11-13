@@ -8,6 +8,7 @@ dev_set=$3
 
 # kaldi type data preparation
 if [ $stage -le 1 ];then
+	echo "local/prepare_all.sh"
 	cd ./src
 	echo $PWD
 	python prepare_data.py --dataset_path $train_set --dest_path data/all_train || exit 1
@@ -15,41 +16,8 @@ if [ $stage -le 1 ];then
 	python combine_data.py --split_wav_dir data/split_wav/ --data_dir data/all_train --combine_data_dir data/PVTC	|| exit 1
 	python prepare_task_data.py --dev_dataset $dev_set --dest_dir ../task/ || exit 1
 	cd ../
+	echo "local/prepare_all.sh succeeded"
 fi
-
-# align words time index
-if [ $stage -le 2 ];then
-	cd ./src
-	echo $PWD
-	./align_nnet3_word.sh || exit 1
-	cd ../
-fi
-
-# prepare keywords train set
-if [ $stage -le 3 ];then
-	mkdir -p data
-	cd ./src
-	echo $PWD
-	python prepare_keyword_feats.py --ctm_file exp/nnet3_PVTC/ctm --wavfile_path data/PVTC_nopitch/wav.scp --save_dir ../data/train_feat/positive || exit 1
-	cd ../
-fi
-
-# preapre negtive set
-if [ $stage -le 4 ];then
-	cd ./src
-	python prepare_negative_feats.py --wavfile_path data/PVTC/neg_wav.scp --dest_path ../data/train_feat/negative || exit 1
-	cd ../
-fi
-
-
-
-
-
-
-
-
-
-
 
 
 
