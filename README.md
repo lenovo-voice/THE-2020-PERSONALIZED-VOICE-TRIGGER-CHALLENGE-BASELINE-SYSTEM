@@ -12,9 +12,7 @@ In this challenge, we provide a leaderboard, ranked by the metric ![1](http://la
 
 Results are shown in S_kws_task1.jpg and S_kws_task2.jpg.  We choose the final score under alpha is equal to nineteen as model's performance criterion. 
 
-![4](http://latex.codecogs.com/svg.latex?p_{target})=0.05
-
-![5](http://latex.codecogs.com/svg.latex?\begin{equation}score_{wake-up}=p_{target}*Miss+FA \end{equation})
+![4](http://latex.codecogs.com/svg.latex?p_{target})=0.05, ![3](http://latex.codecogs.com/svg.latex?\begin{equation}score_{wake-up}=Miss+alpha*FA\end{equation})
 
 
 | Model | Task1 | Task2 |
