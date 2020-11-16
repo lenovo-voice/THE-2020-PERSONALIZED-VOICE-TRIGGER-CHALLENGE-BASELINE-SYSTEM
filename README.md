@@ -14,7 +14,7 @@ Results are shown in S_kws_task1.jpg and S_kws_task2.jpg.  We choose the final s
 
 | Model | Task1 | Task2 |
 | :----:| :----: | :----: |
-| Baseline | 20.7% | 34.8% |
+| Baseline | 21.21% | 31.38% |
 
 The run.sh is the current recommended recipe.
 
