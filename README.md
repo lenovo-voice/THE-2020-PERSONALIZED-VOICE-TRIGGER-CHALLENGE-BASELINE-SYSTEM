@@ -1,6 +1,6 @@
 # THE 2020 PERSONALIZED VOICE TRIGGER CHALLENGE BASELINE SYSTEM
 
-This is the baseline system for PVTC2020 (https://www.pvtc2020.org).
+This is the baseline system for PVTC2020 which is a satellite event of ISCSLP2021(https://www.iscslp2021.org), for more information about the challenge and dataset you can visit the website https://www.pvtc2020.org. 
 
 Our baseline method consists of a wake-up system and a speaker verification system. As shown in the figure below, we designed a two-pass approach to respond whenever the target speaker says the wake-up word. When the wake-up word detection system triggers, the speaker verification system starts to decide whether the audio segment that triggered the wake-up word detector is indeed spoken by the enrolled target speaker.
 
@@ -22,5 +22,5 @@ The run.sh is the current recommended recipe.
 
 
 
-
+Contact us: PVTC2020@lenovo.com
 
