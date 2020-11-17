@@ -96,7 +96,7 @@ parser.add_argument('--eolembd_save',      type=str,   default="",     help='sav
 # parser.add_argument('--utt2wav_kws',    type=str,   default="",     help='wav.scp file from kws system')
 parser.add_argument('--parameter_savepath',type=str,default="",     help='threthold dic for sv system')
 parser.add_argument('--save_dic',          type=bool,  default=True,   help='whether save embds for enrollment data')
-parser.add_argument('--alpha',             type=convert_alpha,   default='1,1.5,2,3,5,10,15,20' ,    help='Alpha');
+parser.add_argument('--alpha',             type=convert_alpha,   default='1,1.5,2,3,5,10,15,19,20' ,    help='Alpha');
 
 
 ## For test only
@@ -224,6 +224,13 @@ if args.inference == True:
     plt.ylabel("Final score")
     taskid = args.trials_list.split('/')[-2] 
     plt.savefig(f'../S_kws_{taskid}.jpg')
+    with open(f'../Baseline_{taskid}_01.txt','w') as f:
+        for i,line in enumerate(lines):
+            data = line.strip().split()
+            if output_score[i]=='positive':
+                f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 1\n')
+            else:
+                f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 0\n')
     with open(f'../S_kws_{taskid}.txt','w') as f:
         for i,s in enumerate(scores):
             f.write('Alpha:%.2f S_kws:%.5f \n'%(args.alpha[i],s))
