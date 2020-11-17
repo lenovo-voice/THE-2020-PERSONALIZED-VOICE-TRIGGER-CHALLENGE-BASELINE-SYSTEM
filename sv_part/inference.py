@@ -72,8 +72,9 @@ parser.add_argument('--nOut',           type=int,   default=512,    help='Embedd
 
 ## inference parameters
 parser.add_argument('--trials_list',    type=str,   default="",     help='trials file for pvtc');
-parser.add_argument('--devdatapath',    type=str,   default="",     help='flie path for dev data')
-parser.add_argument('--uttpath',        type=str,   default="",     help='flie path for splited data')
+parser.add_argument('--utt2wav',        type=str,   default="",     help='flie path for trails data')
+parser.add_argument('--uttpath',        type=str,   default="",     help='flie path for trails data')
+parser.add_argument('--u2l_template',   type=str,   default="",     help='trials result from kws system')
 parser.add_argument('--utt2label',      type=str,   default="",     help='judgement result from kws system')
 parser.add_argument('--eolembd_save',   type=str,   default="",     help='save path for enrollment embds')
 parser.add_argument('--save_dic',       type=bool,  default=True,    help='whether save embds for enrollment data')
@@ -199,11 +200,12 @@ if args.inference == True:
         lines = f.readlines()
     # utt2wav = {line.split()[0]: line.split()[1] for line in open(args.utt2wav)}
     utt2label = {line.split()[0]: line.split()[1] for line in open(args.utt2label)}
+    u2l_template = {line.split()[0]: line.split()[1] for line in open(args.u2l_template)}
     eolembd_savepath = args.save_path+'/enrollment_data.npy'
     if(os.path.exists(eolembd_savepath)):
         enroll_dic = numpy.load(eolembd_savepath,allow_pickle=True).item()
     else:
-        enroll_dic = s.enrollment_dic_kwsTrials(args.trials_list,args.devdatapath,utt2label,eolembd_savepath,10,save_dic=args.save_dic)
+        enroll_dic = s.enrollment_dic_kwsTrials(args.trials_list,args.uttpath,utt2label,eolembd_savepath,10,save_dic=args.save_dic)
 
     output_score = []
     labels = []
@@ -214,12 +216,13 @@ if args.inference == True:
 
     tsatrt = time.time()
     for line in tqdm.tqdm(lines):
+        # Only use 40000 lines of trial file, because the back contains stitched audio
         data = line.strip().split()
         final_labels.append(data[4])
         if utt2label[data[3]] == 'negative':
             output_score.append('negative')
             continue
-        else:
+        elif (utt2label[data[3]] == 'positive') & (u2l_template[data[3]] == 'trigger'):
             with torch.no_grad():
                 uttid = data[3]+'.wav'
                 if uttid not in eval_dic:
@@ -237,6 +240,8 @@ if args.inference == True:
                 labels.append(0)
             else:
                 labels.append(1)
+            output_score.append('tbd')
+        else:
             output_score.append('tbd')
     tend = time.time()- tsatrt
     print('total time: %.2f' %(tend))

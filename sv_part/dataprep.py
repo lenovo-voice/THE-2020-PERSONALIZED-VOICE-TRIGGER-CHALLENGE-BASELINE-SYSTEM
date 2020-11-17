@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
-# The script downloads the VoxCeleb datasets and converts all files to WAV.
-# Requirement: ffmpeg and wget running on a Linux system.
+
 
 import argparse
 import os
@@ -25,7 +24,8 @@ parser = argparse.ArgumentParser(description = "Train file generater");
 parser.add_argument('--train_set', 	     type=str, default="data", help='PVTC train path')
 parser.add_argument('--dev_path', 	     type=str, default="data", help='PVTC dev path')
 parser.add_argument('--pvtc_trials_path',type=str, default="data", help='task1 trials')
-parser.add_argument('--utt2label',         type=str, default="data", help='trials utt2label template')
+parser.add_argument('--utt2label',       type=str, default="data", help='trials utt2label template')
+parser.add_argument('--split_path',      type=str, default="data", help='split data path for dev')
 
 parser.add_argument('--make_sv_trials',  dest='make_sv_trials',  action='store_true', help='Make sv trials')
 parser.add_argument('--make_list', dest='make_list', action='store_true', help='Make finetune train list')
@@ -36,12 +36,12 @@ args = parser.parse_args();
 
 
 def generate_list(args):
-	files_pure = glob.glob('%s/*/xiaole/*/*.wav'%args.train_set)
+	files_pure = glob.glob('../src/data/split_wav/xiaole/*.wav')
 	files_all = glob.glob('%s/*/*/*/*.wav'%args.train_set)
 	list_pure = []
 	list_all = []
 	for line in (files_pure):
-		list_pure.append(line.split('/')[-4]+' '+line)
+		list_pure.append(line.split('/')[5].split('_')[1].split('-')[0]+' '+line)
 	for line in (files_all):
 		list_all.append(line.split('/')[-4]+' '+line)
 
@@ -57,9 +57,9 @@ def get_sv_trials(args):
 		test_data = line.split()[3]
 		if utt2label[test_data] == 'positive':
 			if line.split()[4] == 'positive':
-				sv_trial.append('1 '+args.dev_path+line.split()[0]+' '+args.dev_path+test_data)
+				sv_trial.append('1 '+args.dev_path+line.split()[0]+' '+args.split_path+test_data)
 			else:
-				sv_trial.append('0 '+args.dev_path+line.split()[0]+' '+args.dev_path+test_data)
+				sv_trial.append('0 '+args.dev_path+line.split()[0]+' '+args.split_path+test_data)
 	return sv_trial
 
 ## ========== ===========
