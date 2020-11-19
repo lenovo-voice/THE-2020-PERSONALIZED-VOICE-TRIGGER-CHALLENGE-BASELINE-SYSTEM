@@ -72,8 +72,9 @@ parser.add_argument('--nOut',           type=int,   default=512,    help='Embedd
 
 ## inference parameters
 parser.add_argument('--trials_list',    type=str,   default="",     help='trials file for pvtc');
-parser.add_argument('--utt2wav',        type=str,   default="",     help='flie path for trails data')
-parser.add_argument('--uttpath',        type=str,   default="",     help='flie path for trails data')
+# parser.add_argument('--utt2wav',        type=str,   default="",     help='flie path for trails data')
+parser.add_argument('--uttpath',        type=str,   default="",     help='flie path for trials split data')
+parser.add_argument('--devdatapath',    type=str,   default="",     help='flie path for trials raw data')
 parser.add_argument('--u2l_template',   type=str,   default="",     help='trials result from kws system')
 parser.add_argument('--utt2label',      type=str,   default="",     help='judgement result from kws system')
 parser.add_argument('--eolembd_save',   type=str,   default="",     help='save path for enrollment embds')
@@ -205,7 +206,7 @@ if args.inference == True:
     if(os.path.exists(eolembd_savepath)):
         enroll_dic = numpy.load(eolembd_savepath,allow_pickle=True).item()
     else:
-        enroll_dic = s.enrollment_dic_kwsTrials(args.trials_list,args.uttpath,utt2label,eolembd_savepath,10,save_dic=args.save_dic)
+        enroll_dic = s.enrollment_dic_kwsTrials(args.trials_list,args.devdatapath,utt2label,eolembd_savepath,10,save_dic=args.save_dic)
 
     output_score = []
     labels = []
