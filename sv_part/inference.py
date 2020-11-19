@@ -223,7 +223,7 @@ if args.inference == True:
         if utt2label[data[3]] == 'negative':
             output_score.append('negative')
             continue
-        elif (utt2label[data[3]] == 'positive') & (u2l_template[data[3]] == 'trigger'):
+        elif (utt2label[data[3]] == 'trigger') & (u2l_template[data[3]] == 'positive'):
             with torch.no_grad():
                 uttid = data[3]+'.wav'
                 if uttid not in eval_dic:
