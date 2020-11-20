@@ -69,8 +69,8 @@ We provide the text-dependent finetuned model after 35 epoch pre-training and 10
 You can also download a text-dependent speaker model from [here](). EER(Equal Error Rate) of the text-dependent model based on task1 is `1.1200`. -->
 | Model |    Task | EER(%) | Download Link |
 | :-----|  :----: |:----: | :----: |
-| text-dependent | Taks1 |`1.4817` | [BaiduCloud](https://pan.baidu.com/s/102L_ciIQTmGJRlSo9Yu7EA) |
-| text-dependent | Taks2 |`2.5650` | [BaiduCloud](https://pan.baidu.com/s/102L_ciIQTmGJRlSo9Yu7EA) |
+| text-dependent | Taks1 |`1.3263` | [BaiduCloud](https://pan.baidu.com/s/102L_ciIQTmGJRlSo9Yu7EA) |
+| text-dependent | Taks2 |`1.9042` | [BaiduCloud](https://pan.baidu.com/s/102L_ciIQTmGJRlSo9Yu7EA) |
 
 The access code is `ayez`
 
