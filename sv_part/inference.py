@@ -253,7 +253,7 @@ if args.inference == True:
     auc = metrics.auc(fpr, tpr)
     idxE = numpy.nanargmin(numpy.absolute((fnr - fpr)))
     eer  = max(fpr[idxE],fnr[idxE])
-    mindcf , _ = ComputeMinDcf(fnr,fpr,thresholds)
+    mindcf , min_c_det_threshold = ComputeMinDcf(fnr,fpr,thresholds)
     print('EER: %.4F ,Threshold： %.10F' %(eer,thresholds[idxE]))
     print('minDCF: %.4f ,Threshold： %.10F' %(mindcf*0.01 ,min_c_det_threshold))
     parameter_dic = {}
