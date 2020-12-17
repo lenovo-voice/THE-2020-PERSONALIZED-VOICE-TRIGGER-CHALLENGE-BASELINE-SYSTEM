@@ -69,6 +69,15 @@ if [ $stage -le 9 ];then
 
 fi
 
+if [ $stage -le 10 ];then
+	
+	python src/get_testset_trigger_wav_task.py --txt_name outputs_txts/Baseline-words_fbank8040_LSTMAvg_test_task1.txt --save_path data/trigger_wav/test/task1/ --wav_scp_file testset_task1/wav_for_wake.scp  --threshold `python src/get_th.py --total_hours 20.1309 --plt_name wake_task1.jpg --pkl_names outputs_pkls/Baseline-words_fbank8040_LSTMAvg_task1.pkl --threshold_for_num_false_alarm_per_hour 1.0` --model_class lstm_models --model_name LSTMAvg --word_num 3 --step_size 3 --conf_size 150 --vad_mode 3 --vad_max_length 130 --vad_max_activate 0.9 --predict_length 80 --segment_step 10
+
+	python python src/get_testset_trigger_wav_task.py --test_model outputs/train_Baseline-words_fbank8040_LSTMAvg/models/model_100 --txt_name outputs_txts/Baseline-words_fbank8040_LSTMAvg_test_task2.txt --save_path data/trigger_wav/test/task2/ --threshold `python src/get_th.py --total_hours 36.0836 --plt_name  wake_task2.jpg --pkl_names outputs_pkls/Baseline-words_fbank8040_LSTMAvg_task2.pkl --threshold_for_num_false_alarm_per_hour 1.0` --model_class lstm_models --model_name LSTMAvg --word_num 3 --step_size 3 --conf_size 150 --vad_mode 0 --vad_max_length 200 --vad_max_activate 0.8 --predict_length 80 --segment_step 10 --wav_scp_file testset_task2/wav_for_wake.scp
+
+
+fi
+
 
 echo "local/run_kws.sh succeeded"
 
