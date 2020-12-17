@@ -1,8 +1,0 @@
-Alpha:1.00 S_kws:0.03923 
-Alpha:1.50 S_kws:0.04365 
-Alpha:2.00 S_kws:0.04806 
-Alpha:3.00 S_kws:0.05689 
-Alpha:5.00 S_kws:0.07455 
-Alpha:10.00 S_kws:0.11870 
-Alpha:15.00 S_kws:0.16285 
-Alpha:20.00 S_kws:0.20700 

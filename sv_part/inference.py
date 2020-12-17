@@ -255,11 +255,12 @@ if args.inference == True:
     eer  = max(fpr[idxE],fnr[idxE])
     mindcf , _ = ComputeMinDcf(fnr,fpr,thresholds)
     print('EER: %.4F ,Threshold： %.10F' %(eer,thresholds[idxE]))
-    print('minDCF: %.4f'%(mindcf*0.01))
+    print('minDCF: %.4f ,Threshold： %.10F' %(mindcf*0.01 ,min_c_det_threshold))
     parameter_dic = {}
     # finalscore_dic = {}
     # parameter_dic['thresholds'] = thresholds
-    parameter_dic['eer_threshold'] = thresholds[idxE]
+    print('Save threshold(EER threshold+mincDCF threshold /2)： %.10F' %((thresholds[idxE] +min_c_det_threshold) /2))
+    parameter_dic['eer_threshold'] = (thresholds[idxE] +min_c_det_threshold) /2
 
     numpy.save(args.save_path+'/eer_threshold.npy',parameter_dic)
 

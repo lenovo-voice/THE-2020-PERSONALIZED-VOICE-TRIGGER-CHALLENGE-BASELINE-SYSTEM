@@ -14,9 +14,13 @@ In this challenge, we provide a leaderboard, ranked by the metric ![1](http://la
 
 Results are shown in S_kws_task1.jpg and S_kws_task2.jpg.  We choose the final score under alpha is equal to nineteen as model's performance criterion. (![4](http://latex.codecogs.com/svg.latex?p_{target})=0.05, ![4](http://latex.codecogs.com/svg.latex?\begin{equation}score_{wake-up}=(p_{target}*Miss+(1-p_{target})*FA)*20\end{equation}))
 
+By updating the method of determining the threshold of the speaker verification system (using the mean threshold of EER and minDCF instead of the threshold of EER), we proposed Baseline_v2, which has been greatly improved in the development set.
+
 | Model | Task1 | Task2 |
 | :----:| :----: | :----: |
-| Baseline | 0.1981 | 0.3334 |
+| Baseline_v1 | 0.1981 | 0.3334 |
+| Baseline_v2 | 0.1009 | 0.1415 |
+All the result are based on the development set.
 
 The run.sh is the current recommended recipe.
 

@@ -84,7 +84,7 @@ $ cd ../
 ```
 By running the above code, the threthold of the system and the speaker embedding of the enrollment data in the trial file will be calculated and saved under <path_task>. Note that <path_task> is the path for saving threshold (not the model).We suggest set the `devdatapath` parameter as `PVTC/official_data/dev/taskX/wav_data/`, which is the raw audio in tasks in order to extract embeddings of enrollment utterances in trial file. The `uttpath` needs to be set as the positive part audio cut by your kws system.
 
-
+<mark>**note**: we used two methods to determine the threshold. The first method is using the threshold of EER(Equal Error Rate). Then we use the mean thresold of EER and minDCF, which has been greatly improved in the development set.<mark>
 
 **note**: in order to calculate the threshold of the speaker system, we assume the wake-up system is perfect enough. So we use the standard utt2label file which is absolutely right in this step, it can be found in `PVTC/official_data/dev/task1/trials_for_wake`. It contains the uttrance index and its ground truth, as follows:
 ```
