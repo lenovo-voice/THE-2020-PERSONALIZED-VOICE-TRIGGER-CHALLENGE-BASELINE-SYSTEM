@@ -20,6 +20,7 @@ By updating the method of determining the threshold of the speaker verification 
 | :----:| :----: | :----: |
 | Baseline_v1 | 0.1981 | 0.3334 |
 | Baseline_v2 | 0.1009 | 0.1415 |
+
 All the result are based on the development set.
 
 The run.sh is the current recommended recipe.
