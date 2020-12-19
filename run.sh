@@ -24,7 +24,9 @@ if [ $stage -le 3 ];then
      /PATH/musan/ /PATH/RIRS_NOISES/simulated_rirs/ None || exit 1
 fi
 
-local/show_results.sh /PATH/official_PVTC/dev || exit 1
+if [ $stage -le 4 ];then
+	local/show_results.sh /PATH/official_PVTC/dev || exit 1
+fi
 
 exit 0;
 

@@ -89,7 +89,7 @@ parser.add_argument('--nOut',           type=int,   default=512,    help='Embedd
 
 ## inference parameters
 parser.add_argument('--trials_list',       type=str,   default="",     help='trials file for pvtc');
-# parser.add_argument('--utt2wav',        type=str,   default="",     help='wav.scp flie for trails data')
+parser.add_argument('--utt2wav',        type=str,   default="",     help='wav.scp flie for trails data')
 parser.add_argument('--uttpath',           type=str,   default="",     help='flie path for trails data')
 parser.add_argument('--utt2label',         type=str,   default="",     help='judgement result from kws system')
 parser.add_argument('--eolembd_save',      type=str,   default="",     help='save path for enrollment embds')
@@ -185,55 +185,101 @@ if args.inference == True:
 
     parameter_dic = numpy.load(args.save_path+args.parameter_savepath,allow_pickle=True).item()
     threshold = parameter_dic['eer_threshold']
-
-    tsatrt = time.time()
-    for line in tqdm.tqdm(lines):
-        data = line.strip().split()
-        final_labels.append(data[4])
-        if utt2label[data[3]] == 'non-trigger':
-            output_score.append('negative')
-            continue
-        else:
-            with torch.no_grad():
-                uttid = data[3] +'.wav'
-                if uttid not in eval_dic:
-                    inp = torch.FloatTensor(loadWAV(args.uttpath + uttid,0,True,10)).cuda()
-                    eval_embd = s.__S__.forward(inp).cpu().numpy()
-                    eval_dic[uttid] = eval_embd
-                else:
-                    eval_embd = eval_dic[uttid] 
-            eval_embd = numpy.squeeze(eval_embd)
-            enroll_embd = (enroll_dic[data[0]] + enroll_dic[data[1]] +enroll_dic[data[2]]) /3
-            enroll_embd = numpy.squeeze(enroll_embd)
-            result = 1 - spatial.distance.cosine(eval_embd, enroll_embd)
-            if result < threshold:
-                output_score.append('negative')
-            else:
-                output_score.append('positive')
-    tend = time.time()- tsatrt
-    print('total time: %.2f' %(tend))
-
-    scores =[]
-    for al in args.alpha:
-        S_kws , _, _ = compute_final_score(final_labels,output_score,al)
-        print('Alpha: %d : S_kws: %.5f ' %(al,S_kws))
-        scores.append(S_kws)
-    plt.plot(args.alpha, scores,label='S_kws')
-    plt.legend()  
-    plt.xlabel('Alpha') 
-    plt.ylabel("Final score")
-    taskid = args.trials_list.split('/')[-2] 
-    plt.savefig(f'../S_kws_{taskid}.jpg')
-    with open(f'../Baseline_{taskid}_01.txt','w') as f:
-        for i,line in enumerate(lines):
+    if len(lines[0].strip().split()) == 5: # on dev set
+        print('Deal with dev set')
+        tsatrt = time.time()
+        for line in tqdm.tqdm(lines):
             data = line.strip().split()
-            if output_score[i]=='positive':
-                f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 1\n')
+            final_labels.append(data[4])
+            if utt2label[data[3]] == 'non-trigger':
+                output_score.append('negative')
+                continue
             else:
-                f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 0\n')
-    with open(f'../S_kws_{taskid}.txt','w') as f:
-        for i,s in enumerate(scores):
-            f.write('Alpha:%.2f S_kws:%.5f \n'%(args.alpha[i],s))
+                with torch.no_grad():
+                    uttid = data[3] +'.wav'
+                    if uttid not in eval_dic:
+                        inp = torch.FloatTensor(loadWAV(args.uttpath + uttid,0,True,10)).cuda()
+                        eval_embd = s.__S__.forward(inp).cpu().numpy()
+                        eval_dic[uttid] = eval_embd
+                    else:
+                        eval_embd = eval_dic[uttid] 
+                eval_embd = numpy.squeeze(eval_embd)
+                enroll_embd = (enroll_dic[data[0]] + enroll_dic[data[1]] +enroll_dic[data[2]]) /3
+                enroll_embd = numpy.squeeze(enroll_embd)
+                result = 1 - spatial.distance.cosine(eval_embd, enroll_embd)
+                if result < threshold:
+                    output_score.append('negative')
+                else:
+                    output_score.append('positive')
+        tend = time.time()- tsatrt
+        print('total time: %.2f' %(tend))
+
+        scores =[]
+        for al in args.alpha:
+            S_kws , _, _ = compute_final_score(final_labels,output_score,al)
+            print('Alpha: %d : S_kws: %.5f ' %(al,S_kws))
+            scores.append(S_kws)
+        plt.plot(args.alpha, scores,label='S_kws')
+        plt.legend()  
+        plt.xlabel('Alpha') 
+        plt.ylabel("Final score")
+        taskid = args.trials_list.split('/')[-2] 
+        plt.savefig(f'../S_kws_{taskid}.jpg')
+        with open(f'../Baseline_{taskid}_01.txt','w') as f:
+            for i,line in enumerate(lines):
+                data = line.strip().split()
+                if output_score[i]=='positive':
+                    f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 1\n')
+                else:
+                    f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 0\n')
+        with open(f'../S_kws_{taskid}.txt','w') as f:
+            for i,s in enumerate(scores):
+                f.write('Alpha:%.2f S_kws:%.5f \n'%(args.alpha[i],s))
+
+    elif len(lines[0].strip().split()) == 4: #eval set without label
+        print('Deal with eval set')
+        utt2wav = {line.split()[0]: line.split()[1] for line in open(args.utt2wav)}
+        tsatrt = time.time()
+        enroll_dic = {}
+        for line in tqdm.tqdm(lines):
+            data = line.strip().split()
+            for enroll_utt in data[0],data[1],data[2]:
+                if enroll_utt not in enroll_dic:
+                    with torch.no_grad():
+                        inp = torch.FloatTensor(loadWAV(utt2wav[enroll_utt],0,True,10)).cuda()
+                        enroll_embd =  s.__S__.forward(inp).cpu().numpy()
+                        enroll_dic[enroll_utt] = enroll_embd
+            if utt2label[data[3]] == 'non-trigger':
+                output_score.append('negative')
+                continue
+            else:
+                with torch.no_grad():
+                    uttid = data[3] +'.wav'
+                    if uttid not in eval_dic:
+                        inp = torch.FloatTensor(loadWAV(args.uttpath + uttid,0,True,10)).cuda()
+                        eval_embd = s.__S__.forward(inp).cpu().numpy()
+                        eval_dic[uttid] = eval_embd
+                    else:
+                        eval_embd = eval_dic[uttid] 
+                eval_embd = numpy.squeeze(eval_embd)
+                enroll_embd = (enroll_dic[data[0]] + enroll_dic[data[1]] +enroll_dic[data[2]]) /3
+                enroll_embd = numpy.squeeze(enroll_embd)
+                result = 1 - spatial.distance.cosine(eval_embd, enroll_embd)
+                if result < threshold:
+                    output_score.append('negative')
+                else:
+                    output_score.append('positive')
+        tend = time.time()- tsatrt
+        print('total time: %.2f' %(tend))
+        taskid = args.trials_list.split('/')[-2] 
+        with open(f'../Baseline_{taskid}_01.txt','w') as f:
+            for i,line in enumerate(lines):
+                data = line.strip().split()
+                if output_score[i]=='positive':
+                    f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 1\n')
+                else:
+                    f.write(data[0]+' '+data[1]+' '+data[2]+' '+data[3]+' 0\n')
+
     quit()
 
 
