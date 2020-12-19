@@ -5,7 +5,7 @@ stage=1
 
 
 if [ $stage -le 1 ];then
-	local/prepare_all.sh /PATH/official_PVTC/train /PATH/official_PVTC/train_xiaole_time_point /PATH/official_PVTC/dev || exit 1
+	local/prepare_all.sh /PATH/official_PVTC/train /PATH/official_PVTC/train_xiaole_time_point /PATH/official_PVTC/dev /PATH/TESTSET/task1 /PATH/TESTSET/task2 || exit 1
 fi
 
 if [ $stage -le 2 ];then
