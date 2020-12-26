@@ -91,7 +91,7 @@ for index,wav_key in enumerate(tqdm(test_utt2wav.keys())):
             signal = raw_to_float(seg_i)
             signal_list.append(seg_i)
             torch_fb = logFbankCal(sample_rate = 16000,n_fft = 512,win_length=int(16000*0.025),hop_length=int(16000*0.01),n_mels=80)
-            raw_feats = torch_fb(torch.from_numpy(signal).float())
+            raw_feats = torch_fb(torch.from_numpy(signal).float(),sub_mean=False)
             raw_feats = np.array(raw_feats)
             for seg in range(0, raw_feats.shape[1], segment_step):
                 feats = []

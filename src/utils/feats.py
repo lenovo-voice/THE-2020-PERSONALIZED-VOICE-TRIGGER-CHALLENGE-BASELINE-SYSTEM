@@ -13,12 +13,12 @@ class logFbankCal(nn.Module):
                                                   hop_length=hop_length,
                                                   n_mels=n_mels)
 
-    def forward(self, x, is_aug=[]):
+    def forward(self, x, is_aug=[],sub_mean=True):
         out = self.fbankCal(x)
         #print(out.size())
         out = torch.log(out + 1e-6)
-        out = out - out.mean(axis=1).unsqueeze(dim=1)
-        
+        if sub_mean:
+            out = out - out.mean(axis=1).unsqueeze(dim=1)
         for i in range(len(is_aug)):
             if is_aug[i]:
                 offset = random.randrange(out.shape[1]/8, out.shape[1]/4)
